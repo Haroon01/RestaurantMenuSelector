@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<GridPane alignment="center" hgap="10" prefHeight="262.0" prefWidth="440.0" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="MenuSelector.Controller">
+<GridPane alignment="center" hgap="10" prefHeight="262.0" prefWidth="440.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuSelector.Controller">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -20,21 +19,21 @@
    <children>
       <AnchorPane prefHeight="414.0" prefWidth="662.0">
          <children>
-            <VBox alignment="CENTER" layoutX="198.0" layoutY="63.0" prefHeight="136.0" prefWidth="228.0" spacing="50.0" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="14.0">
+            <VBox alignment="CENTER" layoutX="198.0" layoutY="90.0" prefHeight="136.0" prefWidth="228.0" spacing="50.0" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="90.0">
                <children>
-                  <TextField>
+                  <TextField fx:id="txtTableID">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </TextField>
-                  <TextField>
+                  <TextField fx:id="txtCustomers">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </TextField>
                </children>
             </VBox>
-            <VBox alignment="CENTER" layoutY="63.0" prefHeight="138.0" prefWidth="195.0" spacing="50.0">
+            <VBox alignment="CENTER" layoutY="90.0" prefHeight="138.0" prefWidth="195.0" spacing="70.0" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="90.0">
                <children>
                   <Label text="Table ID">
                      <font>
@@ -48,6 +47,11 @@
                   </Label>
                </children>
             </VBox>
+            <Label alignment="CENTER" layoutX="103.0" layoutY="26.0" prefHeight="44.0" prefWidth="235.0" text="WELCOME" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="37.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
