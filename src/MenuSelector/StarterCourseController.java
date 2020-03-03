@@ -13,15 +13,7 @@ public class StarterCourseController {
 
     public void initialize() throws IOException {
 
-//        Parent part = FXMLLoader.load(getClass().getResource("InitialScreen.fxml"));
-//        Stage stage = new Stage();
-//        Scene scene = new Scene(part);
-//        stage.setScene(scene);
-//        stage.showAndWait();
-//
-//        Parent root2 = FXMLLoader.load(getClass().getResource("InitialScreen.fxml"));
-//        primaryStage.setScene(new Scene(root2, 450, 275));
-//        primaryStage.show();
+
     }
 
 

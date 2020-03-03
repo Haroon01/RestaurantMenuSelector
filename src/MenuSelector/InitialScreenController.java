@@ -39,6 +39,10 @@ public class InitialScreenController {
 
         window.show();
 
+        window.setTitle("Select Starter");
+        window.setHeight(600);
+        window.setWidth(1000);
+
 
     }
 
