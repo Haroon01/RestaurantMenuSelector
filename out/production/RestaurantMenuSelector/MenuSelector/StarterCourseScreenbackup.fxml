@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuSelector.StarterCourseController">
+   <children>
+      <VBox alignment="CENTER" layoutX="154.0" layoutY="60.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="124.0" prefWidth="600.0" spacing="10.0">
+               <children>
+                  <CheckBox fx:id="chkStarter1" mnemonicParsing="false" onAction="#addtoList1" prefHeight="86.0" prefWidth="105.0" text="Popadoms" />
+                  <CheckBox fx:id="chkStarter2" mnemonicParsing="false" onAction="#addToList" prefHeight="86.0" prefWidth="105.0" text="Chicken" />
+                  <CheckBox fx:id="chkStarter3" mnemonicParsing="false" onAction="#addToList" prefHeight="86.0" prefWidth="105.0" text="Fish" />
+                  <CheckBox fx:id="chkStarter4" mnemonicParsing="false" onAction="#addToList" prefHeight="86.0" prefWidth="105.0" text="Kebabs" />
+               </children>
+            </HBox>
+            <ListView fx:id="listItems" prefHeight="200.0" prefWidth="448.0">
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </ListView>
+            <Label fx:id="labelCount" text="Amount of Food Selected: 0" />
+         </children></VBox>
+   </children>
+</AnchorPane>
