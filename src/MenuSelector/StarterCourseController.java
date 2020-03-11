@@ -10,6 +10,8 @@ import javafx.scene.control.*;
 //import java.awt.event.ActionEvent;
 import javafx.event.ActionEvent;
 
+import javax.security.auth.callback.Callback;
+
 
 public class StarterCourseController {
     @FXML
@@ -23,12 +25,19 @@ public class StarterCourseController {
     @FXML
     private ListView<String> listItems;
     @FXML
-    private ObservableList<String> oblistItems = FXCollections.observableArrayList();
+    private ObservableList<Food> oblistItems = FXCollections.observableArrayList();
     @FXML
     private Label labelCount;
     @FXML
     private Button btnRemove;
-
+    @FXML
+    private TableView<Food> tblFoodCart = new TableView<Food>();
+    @FXML
+    private TableColumn<Food,String> colItem;
+    @FXML
+    private TableColumn<Food,Integer> colCals;
+    @FXML
+    private TableColumn<Food,Double> colPrice;
 
     private int listCount = 0;
 
@@ -44,36 +53,42 @@ public class StarterCourseController {
         }
         );
 
-        listItems.setItems(oblistItems);
+        tblFoodCart.setItems(oblistItems);
 
 
     }
+
+
 
     public void addtoList1(ActionEvent event){
-        addToList(btnStarter1);
+        addToList();
+
     }
 
-    public void addtoList2(ActionEvent event){
-        addToList(btnStarter2);
-    }
-    public void addtoList3(ActionEvent event){
-        addToList(btnStarter3);
-    }
-    public void addtoList4(ActionEvent event){
-        addToList(btnStarter4);
-    }
+//    public void addtoList2(ActionEvent event){
+//        addToList(btnStarter2);
+//    }
+//    public void addtoList3(ActionEvent event){
+//        addToList(btnStarter3);
+//    }
+//    public void addtoList4(ActionEvent event){
+//        addToList(btnStarter4);
+//    }
 
-    private void addToList(Button b){
+    private void addToList(){
 
-       // int listCount = 0;
-       // String choices = "";
 
         System.out.println("button was pressed");
         listCount++;
-        String choices = b.getText();
+        //String choices = b.getText();
 
         labelCount.setText("Amount of food selected: " + listCount);
-        oblistItems.add(choices);
+        Food starter1 = new Food("Kebab", 350, 4.50);
+        Food starter2 = new Food("Fish", 203, 5.60);
+        Food starter3 = new Food("Chicken",612, 43.10);
+        Food starter4 = new Food("Popadoms", 43, 0.80);
+        oblistItems.add(starter1);
+        tblFoodCart.setItems(oblistItems);
 
 
     }
@@ -88,6 +103,11 @@ public class StarterCourseController {
             listCount --;
             labelCount.setText("Amount of food selected: " + listCount);
         }
+    }
+
+
+    public void foodList(){
+
     }
 }
 
