@@ -1,39 +1,34 @@
 package MenuSelector;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class Food {
-    private String name;
-    private int calories;
-    private double price;
-    private String Kebab;
+    private SimpleStringProperty item;
+    private SimpleIntegerProperty calories;
+    private SimpleDoubleProperty price;
 
-    public Food(String name, int calories, double price) {
-        this.name = name;
-        this.calories = calories;
-        this.price = price;
+
+    public Food(String item, Integer calories, Double price) {
+        this.item = new SimpleStringProperty(item);
+        this.calories = new SimpleIntegerProperty(calories);
+        this.price = new SimpleDoubleProperty(price);
     }
 
-    public String getName() {
-        return name;
+    public String getItem() {
+        return item.get();
     }
 
-    public void setName(String name) {
-        this.name = name;
+
+    public Integer getCalories() {
+        return calories.get();
     }
 
-    public int getCalories() {
-        return calories;
+    public Double getPrice() {
+        return price.get();
     }
 
-    public void setCalories(int calories) {
-        this.calories = calories;
-    }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
 
 }
