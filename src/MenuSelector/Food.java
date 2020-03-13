@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+
 public class Food {
     private SimpleStringProperty item;
     private SimpleIntegerProperty calories;
@@ -16,6 +17,7 @@ public class Food {
         this.price = new SimpleDoubleProperty(price);
     }
 
+
     public String getItem() {
         return item.get();
     }
@@ -23,6 +25,18 @@ public class Food {
 
     public Integer getCalories() {
         return calories.get();
+    }
+
+    public SimpleStringProperty itemProperty() {
+        return item;
+    }
+
+    public SimpleIntegerProperty caloriesProperty() {
+        return calories;
+    }
+
+    public SimpleDoubleProperty priceProperty() {
+        return price;
     }
 
     public Double getPrice() {

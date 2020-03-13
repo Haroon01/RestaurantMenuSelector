@@ -1,5 +1,7 @@
 package MenuSelector;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -42,33 +44,25 @@ public class StarterCourseController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("initialise method has been executed.");
+        System.out.println("initialise method has been executed."); // debugging check to see if this method is being executed
 
-//        TableColumn<Food, String> colItem = new TableColumn<>("item");
-//        TableColumn<Food, Integer> colCals = new TableColumn<>("calories");
-//        TableColumn<Food, Double> colPrice = new TableColumn<>("Price");
 
+        // Linking the columns with the constructors in food.java so we can add the correct info in the correct columns
         colItem.setCellValueFactory(new PropertyValueFactory<>("item"));
         colCals.setCellValueFactory(new PropertyValueFactory<>("calories"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        tblFoodCart.setItems(getFood());
-        System.out.println(getFood());
+
+        // Add all items from Observable list to the tableView
+        tblFoodCart.setItems(foodList);
     }
 
-    public ObservableList<Food> getFood() {
-        ObservableList<Food> foodList = FXCollections.observableArrayList();
+
+    // Observable list where all the food is stored to be displayed in the tableView
+    private ObservableList<Food> foodList = FXCollections.observableArrayList(); {
         foodList.add(new Food("Kebab", 43, 53.76));
-        return foodList;
+        foodList.add(new Food("Chicken",65,89.00));
     }
-
-//    public ObservableList<Food>  getFood()
-//    {
-//        ObservableList<Food> oblist = FXCollections.observableArrayList();
-//        oblist.add(new Food("Mr.",78,43.56));
-//
-//        return oblist;
-//    }
 
 
     public void addtoList1(ActionEvent event) {
