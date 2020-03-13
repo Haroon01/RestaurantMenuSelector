@@ -44,19 +44,27 @@ public class StarterCourseController implements Initializable {
     private Label lblCount;
     @FXML
     private Label lblTotal;
+    @FXML
+    private Label lblCals;
+    @FXML
+    private Label lblTblNo;
+    @FXML
 
-    int foodCount = 0;
-    Double totalPrice = 0.00;
+
+
+
+    // Counts for all the labels (Price, calories, amount of food)
+    private int foodCount = 0;
+    private Double totalPrice = 0.00;
+    private int totalCals = 0;
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         obSelection.addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {
-                System.out.println("invalidated");
             }
         }
         );
@@ -75,6 +83,8 @@ public class StarterCourseController implements Initializable {
 
         // Add all items from Observable list to the tableView
         tblFoodCart.setItems(foodList);
+
+        updateLabels();
     }
 
 
@@ -93,29 +103,35 @@ public class StarterCourseController implements Initializable {
             System.out.println(food.getItem());
             obSelection.add(food.getItem());
             foodCount++;
-            lblCount.setText("Total Items:"+foodCount);
             totalPrice += food.getPrice();
-            lblTotal.setText("Total: £"+totalPrice);
-
-
+            totalCals += food.getCalories();
+            updateLabels();
         }
     }
 
-    public void removeFromCart(ActionEvent event){
-        if(lstCart.getSelectionModel().getSelectedIndex() == -1){
+    public void removeFromCart(ActionEvent event) {
+        if (lstCart.getSelectionModel().getSelectedIndex() == -1) {
             Alert error1 = new Alert(Alert.AlertType.ERROR, "Select an item to remove!", ButtonType.OK);
             error1.showAndWait();
-        }
-        else{
-            Food food = tblFoodCart.getSelectionModel().getSelectedItem();
-            obSelection.remove(lstCart.getSelectionModel().getSelectedItem());
+        } else {
+            Food food = lstCart.getSelectionModel().getSelectedIndex(); // FIXME: Totals not updating correctly when removing things from the cart
+            obSelection.remove(food);
             foodCount--;
-            lblCount.setText("Total Items:" + foodCount);
-            totalPrice += food.getPrice();
-            lblTotal.setText("Total: £"+totalPrice);
+            totalPrice -= food.getPrice();
+            totalCals -= food.getCalories();
+            updateLabels();
         }
+    }
+
+    public void updateLabels(){
+        Locale locale = new Locale("en", "GB");
+        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
+        lblCount.setText("Total Items: " + foodCount);
+        lblTotal.setText("Total: "+cf.format(totalPrice));
+        lblCals.setText("Calories: "+totalCals);
 
     }
+
 
     // Observable list where all the food is stored to be displayed in the tableView
     private ObservableList<Food> foodList = FXCollections.observableArrayList(); {

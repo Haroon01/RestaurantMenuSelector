@@ -24,12 +24,22 @@ public class InitialScreenController {
     @FXML
     private Button btnNext;
 
+    public TextField getTxtCustomer() {
+        return txtCustomer;
+    }
+
+    public TextField getTxtTableID() {
+        return txtTableID;
+    }
+
     public void nextScene(ActionEvent event) throws IOException{
 
         // This method will replace InitialScreen Scene with StarterCourseScreen Scene.
 
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("StarterCourseScreen.fxml"));
+
+
 
         Scene scene = new Scene(root);
 
@@ -42,6 +52,15 @@ public class InitialScreenController {
         window.setTitle("Select Starter");
         window.setHeight(400);
         window.setWidth(600);
+
+
+    }
+
+    private void getInfo(){
+        //TODO: Get table number and pass to StarterCourseController.java
+        // Gets Table Number and amount of customers
+        String tblNo = txtTableID.getText();
+        String NoOfCust = txtCustomer.getText();
 
 
     }
