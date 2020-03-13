@@ -1,5 +1,7 @@
 package MenuSelector;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -18,19 +20,7 @@ import java.util.ResourceBundle;
 
 public class StarterCourseController implements Initializable {
     @FXML
-    private Button btnStarter1;
-    @FXML
-    private Button btnStarter2;
-    @FXML
-    private Button btnStarter3;
-    @FXML
-    private Button btnStarter4;
-    @FXML
-    private ListView<String> listItems;
-    @FXML
     private Label labelCount;
-    @FXML
-    private Button btnRemove;
     @FXML
     private TableView<Food> tblFoodCart;
     @FXML
@@ -39,11 +29,38 @@ public class StarterCourseController implements Initializable {
     private TableColumn<Food, Integer> colCals;
     @FXML
     private TableColumn<Food, Double> colPrice;
+    @FXML
+    private ObservableList<String> obSelection = FXCollections.observableArrayList();
+    @FXML
+    private ListView<String> lstCart;
+    @FXML
+    private Button btnAddToCart;
+    @FXML
+    private Button btnRemove;
+    @FXML
+    private Label lblCount;
+    @FXML
+    private Label lblTotal;
 
-    private int listCount = 0;
+    int foodCount = 0;
+    Double totalPrice = 0.00;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        obSelection.addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                System.out.println("invalidated");
+            }
+        }
+        );
+
+        lstCart.setItems(obSelection);
+
+
         System.out.println("initialise method has been executed."); // debugging check to see if this method is being executed
 
 
@@ -58,60 +75,45 @@ public class StarterCourseController implements Initializable {
     }
 
 
+
+
+
+    public void addToCart(ActionEvent event){
+        if(tblFoodCart.getSelectionModel().getSelectedIndex() == -1){
+            Alert error = new Alert(Alert.AlertType.ERROR, "Select an item to add!", ButtonType.OK);
+        }
+        else{
+            Food food = tblFoodCart.getSelectionModel().getSelectedItem();
+            System.out.println(food.getItem());
+            obSelection.add(food.getItem());
+            foodCount++;
+            lblCount.setText("Total Items:"+foodCount);
+            totalPrice += food.getPrice();
+            lblTotal.setText("Total: £"+totalPrice);
+
+
+        }
+    }
+
+    public void removeFromCart(ActionEvent event){
+        if(lstCart.getSelectionModel().getSelectedIndex() == -1){
+            Alert error1 = new Alert(Alert.AlertType.ERROR, "Select an item to remove!", ButtonType.OK);//FIXME: Error not showing
+        }
+        else{
+            Food food = tblFoodCart.getSelectionModel().getSelectedItem();
+            obSelection.remove(lstCart.getSelectionModel().getSelectedItem());
+            foodCount--;
+            lblCount.setText("Total Items:" + foodCount);
+            totalPrice += food.getPrice();
+            lblTotal.setText("Total: £"+totalPrice);
+        }
+
+    }
+
     // Observable list where all the food is stored to be displayed in the tableView
     private ObservableList<Food> foodList = FXCollections.observableArrayList(); {
         foodList.add(new Food("Kebab", 43, 53.76));
         foodList.add(new Food("Chicken",65,89.00));
     }
 
-
-    public void addtoList1(ActionEvent event) {
-        addToList();
-
-    }
-
-    public void addtoList2(ActionEvent event) {
-        addToList();
-    }
-
-    public void addtoList3(ActionEvent event) {
-        addToList();
-    }
-
-    public void addtoList4(ActionEvent event) {
-        addToList();
-    }
-
-    private void addToList() {
-
-    }
-
-
-
-//        System.out.println("button was pressed");
-//        listCount++;
-//        //String choices = b.getText();
-//
-//        labelCount.setText("Amount of food selected: " + listCount);
-//        Food starter1 = new Food("Kebab", 350, 4.50);
-//        Food starter2 = new Food("Fish", 203, 5.60);
-//        Food starter3 = new Food("Chicken",612, 43.10);
-//        Food starter4 = new Food("Popadoms", 43, 0.80);
-//        oblistItems.add(starter1);
-//        tblFoodCart.setItems(oblistItems);
-
-
-
-
-    public void removeFromList(ActionEvent event) {
-//        if (listItems.getSelectionModel().getSelectedIndex() == -1){
-//            Alert alert = new Alert(Alert.AlertType.ERROR, "Select an item to remove!", ButtonType.CLOSE);
-//            alert.showAndWait();
-//        }
-//        else{
-//            oblistItems.remove(listItems.getSelectionModel().getSelectedItem());
-//            listCount --;
-//            labelCount.setText("Amount of food selected: " + listCount);
-//
-    }
 }
