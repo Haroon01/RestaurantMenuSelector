@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 
 public class Food {
+    // We need to use SimpleStringProperty here since this is for observable types which go with observable lists
     private SimpleStringProperty item;
     private SimpleIntegerProperty calories;
     private SimpleDoubleProperty price;

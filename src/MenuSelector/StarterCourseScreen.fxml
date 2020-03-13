@@ -38,16 +38,9 @@
                <children>
                   <TableView fx:id="tblFoodCart" editable="true" prefHeight="200.0" prefWidth="366.0">
                     <columns>
-                      <TableColumn fx:id="colItem" prefWidth="213.0" text="Item">
-
-                      </TableColumn>
-                      <TableColumn fx:id="colCals" minWidth="0.0" prefWidth="82.0" text="Calories">
-
-                       </TableColumn>
-
-                       <TableColumn fx:id="colPrice" minWidth="1.0" prefWidth="59.0" text="Price">
-
-                       </TableColumn>
+                      <TableColumn fx:id="colItem" prefWidth="213.0" text="Item"/>
+                      <TableColumn fx:id="colCals" minWidth="0.0" prefWidth="82.0" text="Calories"/>
+                      <TableColumn fx:id="colPrice" minWidth="1.0" prefWidth="59.0" text="Price"/>
                     </columns>
                   </TableView>
                   <ListView prefHeight="164.0" prefWidth="200.0" />
