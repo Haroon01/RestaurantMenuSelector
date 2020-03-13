@@ -17,9 +17,9 @@
                <children>
                   <TableView fx:id="tblFoodCart" prefHeight="200.0" prefWidth="366.0">
                     <columns>
-                      <TableColumn fx:id="colItem" prefWidth="233.0" text="Item" />
-                      <TableColumn fx:id="colCals" minWidth="0.0" prefWidth="59.0" text="Calories" />
-                      <TableColumn fx:id="colPrice" minWidth="1.0" prefWidth="71.0" text="Price" />
+                      <TableColumn fx:id="colItem" prefWidth="233.0" resizable="false" text="Item" />
+                      <TableColumn fx:id="colCals" minWidth="0.0" prefWidth="59.0" resizable="false" text="Calories" />
+                      <TableColumn fx:id="colPrice" minWidth="1.0" prefWidth="71.0" resizable="false" text="Price" />
                     </columns>
                   </TableView>
                   <VBox>

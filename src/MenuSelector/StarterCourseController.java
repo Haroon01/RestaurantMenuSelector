@@ -14,7 +14,10 @@ import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javax.swing.text.NumberFormatter;
 import java.net.URL;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 
@@ -79,8 +82,11 @@ public class StarterCourseController implements Initializable {
 
 
     public void addToCart(ActionEvent event){
+        Locale locale = new Locale("en","UK");
+        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
         if(tblFoodCart.getSelectionModel().getSelectedIndex() == -1){
             Alert error = new Alert(Alert.AlertType.ERROR, "Select an item to add!", ButtonType.OK);
+            error.showAndWait();
         }
         else{
             Food food = tblFoodCart.getSelectionModel().getSelectedItem();
@@ -97,7 +103,8 @@ public class StarterCourseController implements Initializable {
 
     public void removeFromCart(ActionEvent event){
         if(lstCart.getSelectionModel().getSelectedIndex() == -1){
-            Alert error1 = new Alert(Alert.AlertType.ERROR, "Select an item to remove!", ButtonType.OK);//FIXME: Error not showing
+            Alert error1 = new Alert(Alert.AlertType.ERROR, "Select an item to remove!", ButtonType.OK);
+            error1.showAndWait();
         }
         else{
             Food food = tblFoodCart.getSelectionModel().getSelectedItem();

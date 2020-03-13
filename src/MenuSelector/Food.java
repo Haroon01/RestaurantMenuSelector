@@ -4,6 +4,9 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 
 public class Food {
     // We need to use SimpleStringProperty here since this is for observable types which go with observable lists
@@ -39,6 +42,7 @@ public class Food {
     public SimpleDoubleProperty priceProperty() {
         return price;
     }
+
 
     public Double getPrice() {
         return price.get();
