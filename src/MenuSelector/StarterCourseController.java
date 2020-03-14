@@ -114,8 +114,11 @@ public class StarterCourseController implements Initializable {
             Alert error1 = new Alert(Alert.AlertType.ERROR, "Select an item to remove!", ButtonType.OK);
             error1.showAndWait();
         } else {
-            Food food = lstCart.getSelectionModel().getSelectedIndex(); // FIXME: Totals not updating correctly when removing things from the cart
-            obSelection.remove(food);
+
+            //int index = tblFoodCart.getSelectionModel().getSelectedIndex();
+            //Food food = tblFoodCart.getItems().get(index);
+            Food food = tblFoodCart.getSelectionModel().getSelectedItem(); // FIXME: Totals not updating correctly when removing things from the cart
+            obSelection.remove(food.getItem());
             foodCount--;
             totalPrice -= food.getPrice();
             totalCals -= food.getCalories();
