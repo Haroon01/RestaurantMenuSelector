@@ -130,9 +130,9 @@ public class StarterCourseController implements Initializable {
             Alert error1 = new Alert(Alert.AlertType.ERROR, "Select an item to remove!", ButtonType.OK);
             error1.showAndWait();
         } else {
+            //int index = tblFoodCart.getSelectionModel().getSelectedIndex();
+            //Food food = tblFoodCart.getItems().get(index);
             Food food = tblFoodCart.getSelectionModel().getSelectedItem(); // FIXME: Totals not updating correctly when removing things from the cart
-            String food1 = lstCart.getSelectionModel().getSelectedItem();
-            //for(tblFoodCart.getColumns())
             obSelection.remove(food.getItem());
             foodCount--;
             totalPrice -= food.getPrice();
@@ -157,11 +157,6 @@ public class StarterCourseController implements Initializable {
         foodList.add(new Food("Chicken",65,89.00));
     }
 
-    public void addMeal() {
-        String food = tblFoodCart.getSelectionModel().getSelectedItem();
-        tblCart.setItems(obSelection);
-        leftSideList.add(selectedUnit);
-    }
 
 
 
