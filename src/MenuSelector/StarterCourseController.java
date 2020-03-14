@@ -49,7 +49,13 @@ public class StarterCourseController implements Initializable {
     @FXML
     private Label lblTblNo;
     @FXML
-
+    private TableView<Food> tblCart;
+    @FXML
+    private TableColumn<Food, String> colCItem;
+    @FXML
+    private TableColumn<Food, Integer> colCCals;
+    @FXML
+    private TableColumn<Food, Double> colCPrice;
 
 
 
@@ -62,6 +68,9 @@ public class StarterCourseController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+
         obSelection.addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {
@@ -69,7 +78,7 @@ public class StarterCourseController implements Initializable {
         }
         );
 
-        lstCart.setItems(obSelection);
+//        lstCart.setItems(obSelection);
 
 
         System.out.println("initialise method has been executed."); // debugging check to see if this method is being executed
@@ -81,10 +90,17 @@ public class StarterCourseController implements Initializable {
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 
 
+        // tblCart!!
+//        colCItem.setCellValueFactory(new PropertyValueFactory<>("item"));
+//        colCCals.setCellValueFactory(new PropertyValueFactory<>("calories"));
+//        colCPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+
         // Add all items from Observable list to the tableView
         tblFoodCart.setItems(foodList);
 
         updateLabels();
+
     }
 
 
@@ -114,8 +130,10 @@ public class StarterCourseController implements Initializable {
             Alert error1 = new Alert(Alert.AlertType.ERROR, "Select an item to remove!", ButtonType.OK);
             error1.showAndWait();
         } else {
-            Food food = lstCart.getSelectionModel().getSelectedIndex(); // FIXME: Totals not updating correctly when removing things from the cart
-            obSelection.remove(food);
+            Food food = tblFoodCart.getSelectionModel().getSelectedItem(); // FIXME: Totals not updating correctly when removing things from the cart
+            String food1 = lstCart.getSelectionModel().getSelectedItem();
+            //for(tblFoodCart.getColumns())
+            obSelection.remove(food.getItem());
             foodCount--;
             totalPrice -= food.getPrice();
             totalCals -= food.getCalories();
@@ -138,5 +156,13 @@ public class StarterCourseController implements Initializable {
         foodList.add(new Food("Kebab", 43, 53.76));
         foodList.add(new Food("Chicken",65,89.00));
     }
+
+    public void addMeal() {
+        String food = tblFoodCart.getSelectionModel().getSelectedItem();
+        tblCart.setItems(obSelection);
+        leftSideList.add(selectedUnit);
+    }
+
+
 
 }
