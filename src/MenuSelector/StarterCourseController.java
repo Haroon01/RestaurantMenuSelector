@@ -1,5 +1,18 @@
 package MenuSelector;
 
+/**
+ *
+ * Tasks for a pass:
+ * Provide a choice of 4 starters, 6 mains and 4 desserts
+ * Enable 2 customers to select a 1-3 course meal
+ * enable them to enter table number and amount of diners
+ * submit button which simulates sending info to the kitchen
+ * clear the screen for next customer
+ * Display the total order with table number, calories and price
+ * enable a meal to be paid in cash and display a receipt
+ *
+ */
+
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -17,13 +30,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javax.swing.text.NumberFormatter;
 import java.net.URL;
 import java.text.NumberFormat;
+import java.util.Currency;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 
 public class StarterCourseController implements Initializable {
-    @FXML
-    private Label labelCount;
     @FXML
     private TableView<Food> tblFoodCart;
     @FXML
@@ -37,26 +49,11 @@ public class StarterCourseController implements Initializable {
     @FXML
     private ListView<Food> lstCart;
     @FXML
-    private Button btnAddToCart;
-    @FXML
-    private Button btnRemove;
-    @FXML
     private Label lblCount;
     @FXML
     private Label lblTotal;
     @FXML
     private Label lblCals;
-    @FXML
-    private Label lblTblNo;
-    @FXML
-    private TableView<Food> tblCart;
-    @FXML
-    private TableColumn<Food, String> colCItem;
-    @FXML
-    private TableColumn<Food, Integer> colCCals;
-    @FXML
-    private TableColumn<Food, Double> colCPrice;
-
 
 
     // Counts for all the labels (Price, calories, amount of food)
@@ -65,11 +62,10 @@ public class StarterCourseController implements Initializable {
     private int totalCals = 0;
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
+        System.out.println("initialise method has been executed."); // debugging check to see if this method is being executed
 
         obSelection.addListener(new InvalidationListener() {
             @Override
@@ -82,19 +78,11 @@ public class StarterCourseController implements Initializable {
 
 
 
-        System.out.println("initialise method has been executed."); // debugging check to see if this method is being executed
-
-
         // Linking the columns with the constructors in food.java so we can add the correct info in the correct columns
         colItem.setCellValueFactory(new PropertyValueFactory<>("item"));
         colCals.setCellValueFactory(new PropertyValueFactory<>("calories"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-
-        // tblCart!!
-//        colCItem.setCellValueFactory(new PropertyValueFactory<>("item"));
-//        colCCals.setCellValueFactory(new PropertyValueFactory<>("calories"));
-//        colCPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        colPrice.setCellFactory(tc -> new TableCell<Food, Double>());
 
 
         // Add all items from Observable list to the tableView
@@ -114,7 +102,6 @@ public class StarterCourseController implements Initializable {
             error.showAndWait();
         } else {
             Food food = tblFoodCart.getSelectionModel().getSelectedItem();
-            System.out.println(food);
             obSelection.add(food);
             foodCount++;
             totalPrice += food.getPrice();
@@ -131,7 +118,7 @@ public class StarterCourseController implements Initializable {
         } else {
             //int index = tblFoodCart.getSelectionModel().getSelectedIndex();
             //Food food = tblFoodCart.getItems().get(index);
-            Food food = lstCart.getSelectionModel().getSelectedItem(); // FIXME: Totals not updating correctly when removing things from the cart
+            Food food = lstCart.getSelectionModel().getSelectedItem();
             obSelection.remove(food);
             foodCount--;
             totalPrice -= food.getPrice();
@@ -152,8 +139,10 @@ public class StarterCourseController implements Initializable {
 
     // Observable list where all the food is stored to be displayed in the tableView
     private ObservableList<Food> foodList = FXCollections.observableArrayList(); {
-        foodList.add(new Food("Kebab", 43, 53.76));
-        foodList.add(new Food("Chicken",65,89.00));
+        Locale locale = new Locale("en", "GB");
+        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
+        foodList.add(new Food("Kebab", 43, 4.99));
+        foodList.add(new Food("Chicken",65,8.99));
     }
 
 

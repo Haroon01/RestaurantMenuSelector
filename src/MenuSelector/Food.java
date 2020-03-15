@@ -49,6 +49,8 @@ public class Food {
 
 
     public Double getPrice() {
+        Locale locale = new Locale("en", "GB");
+        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
         return price.get();
     }
 
