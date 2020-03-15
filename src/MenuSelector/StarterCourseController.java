@@ -33,9 +33,9 @@ public class StarterCourseController implements Initializable {
     @FXML
     private TableColumn<Food, Double> colPrice;
     @FXML
-    private ObservableList<String> obSelection = FXCollections.observableArrayList();
+    private ObservableList<Food> obSelection = FXCollections.observableArrayList();
     @FXML
-    private ListView<String> lstCart;
+    private ListView<Food> lstCart;
     @FXML
     private Button btnAddToCart;
     @FXML
@@ -78,7 +78,8 @@ public class StarterCourseController implements Initializable {
         }
         );
 
-//        lstCart.setItems(obSelection);
+        lstCart.setItems(obSelection);
+
 
 
         System.out.println("initialise method has been executed."); // debugging check to see if this method is being executed
@@ -105,25 +106,23 @@ public class StarterCourseController implements Initializable {
 
 
 
-
-
-    public void addToCart(ActionEvent event){
-        Locale locale = new Locale("en","UK");
+        public void addToCart (ActionEvent event){
+        Locale locale = new Locale("en", "UK");
         NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
-        if(tblFoodCart.getSelectionModel().getSelectedIndex() == -1){
+        if (tblFoodCart.getSelectionModel().getSelectedIndex() == -1) {
             Alert error = new Alert(Alert.AlertType.ERROR, "Select an item to add!", ButtonType.OK);
             error.showAndWait();
-        }
-        else{
+        } else {
             Food food = tblFoodCart.getSelectionModel().getSelectedItem();
-            System.out.println(food.getItem());
-            obSelection.add(food.getItem());
+            System.out.println(food);
+            obSelection.add(food);
             foodCount++;
             totalPrice += food.getPrice();
             totalCals += food.getCalories();
             updateLabels();
         }
     }
+
 
     public void removeFromCart(ActionEvent event) {
         if (lstCart.getSelectionModel().getSelectedIndex() == -1) {
@@ -132,8 +131,8 @@ public class StarterCourseController implements Initializable {
         } else {
             //int index = tblFoodCart.getSelectionModel().getSelectedIndex();
             //Food food = tblFoodCart.getItems().get(index);
-            Food food = tblFoodCart.getSelectionModel().getSelectedItem(); // FIXME: Totals not updating correctly when removing things from the cart
-            obSelection.remove(food.getItem());
+            Food food = lstCart.getSelectionModel().getSelectedItem(); // FIXME: Totals not updating correctly when removing things from the cart
+            obSelection.remove(food);
             foodCount--;
             totalPrice -= food.getPrice();
             totalCals -= food.getCalories();

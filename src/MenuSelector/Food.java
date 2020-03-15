@@ -21,6 +21,10 @@ public class Food {
         this.price = new SimpleDoubleProperty(price);
     }
 
+    @Override
+    public String toString() {
+        return "" + this.getItem();
+    }
 
     public String getItem() {
         return item.get();
