@@ -18,117 +18,24 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class MainCourseController {
+public class MainCourseController extends Main {
 
-    @FXML
-    private TableView<Food> tblFoodCart;
-    @FXML
-    private TableColumn<Food, String> colItem;
-    @FXML
-    private TableColumn<Food, Integer> colCals;
-    @FXML
-    private TableColumn<Food, Double> colPrice;
-    @FXML
-    private ObservableList<Food> obSelection = FXCollections.observableArrayList();
-    @FXML
-    private ListView<Food> lstCart;
-    @FXML
-    private Label lblCount;
-    @FXML
-    private Label lblTotal;
-    @FXML
-    private Label lblCals;
-    @FXML
-    private Label lblTblNo;
-
-
-    private void initCount() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("StarterCourseScreen.fxml"));
-        Parent root = loader.load();
-        StarterCourseController c = loader.getController();
-        totalCals2 =+ c.totalCals;
-
-    }
-    // Counts for all the labels (Price, calories, amount of food)
-    private int foodCount = 0;
-    private Double totalPrice = 0.00;
-    private int totalCals2;
+//    private void initCount() throws IOException {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("StarterCourseScreen.fxml"));
+//        Parent root = loader.load();
+//        StarterCourseController c = loader.getController();
+//        totalCals2 =+ c.totalCals;
+//
+//    }
+//    // Counts for all the labels (Price, calories, amount of food)
+//    private int foodCount = 0;
+//    private Double totalPrice = 0.00;
+//    private int totalCals2;
 
     //private int totalCals2 = c.totalCals;
 
 
 
-    public void initialize() throws IOException {
-
-        initCount();
-
-        System.out.println("initialise method has been executed."); // debugging check to see if this method is being executed
-
-        obSelection.addListener(new InvalidationListener() {
-                                    @Override
-                                    public void invalidated(Observable observable) {
-                                    }
-                                }
-        );
-
-        lstCart.setItems(obSelection);
-
-
-
-        // Linking the columns with the constructors in food.java so we can add the correct info in the correct columns
-        colItem.setCellValueFactory(new PropertyValueFactory<>("item"));
-        colCals.setCellValueFactory(new PropertyValueFactory<>("calories"));
-        colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-
-        // Add all items from Observable list to the tableView
-        tblFoodCart.setItems(foodList);
-
-        updateLabels();
-
-    }
-
-
-
-    public void addToCart (ActionEvent event){
-        Locale locale = new Locale("en", "UK");
-        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
-        if (tblFoodCart.getSelectionModel().getSelectedIndex() == -1) {
-            Alert error = new Alert(Alert.AlertType.ERROR, "Select an item to add!", ButtonType.OK);
-            error.showAndWait();
-        } else {
-            Food food = tblFoodCart.getSelectionModel().getSelectedItem();
-            obSelection.add(food);
-            foodCount++;
-            totalPrice += food.getPrice();
-            totalCals2 += food.getCalories();
-            updateLabels();
-        }
-    }
-
-
-    public void removeFromCart(ActionEvent event) {
-        if (lstCart.getSelectionModel().getSelectedIndex() == -1) {
-            Alert error1 = new Alert(Alert.AlertType.ERROR, "Select an item to remove!", ButtonType.OK);
-            error1.showAndWait();
-        } else {
-            Food food = lstCart.getSelectionModel().getSelectedItem();
-            obSelection.remove(food);
-            foodCount--;
-            totalPrice -= food.getPrice();
-            totalCals2 -= food.getCalories();
-            updateLabels();
-        }
-    }
-
-    public void updateLabels(){
-        Locale locale = new Locale("en", "GB");
-        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
-        lblCount.setText("Total Items: " + foodCount);
-        lblTotal.setText("Total: "+cf.format(totalPrice));
-        lblCals.setText("Calories: "+totalCals2);
-
-    }
 
 
     // Observable list where all the food is stored to be displayed in the tableView

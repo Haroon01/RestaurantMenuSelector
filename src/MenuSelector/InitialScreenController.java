@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class InitialScreenController {
+public class InitialScreenController extends Main {
 
     @FXML
     private TextField txtCustomers;
