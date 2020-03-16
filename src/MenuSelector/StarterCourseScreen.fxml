@@ -55,7 +55,7 @@
             <HBox alignment="CENTER" prefHeight="59.0" prefWidth="600.0" spacing="30.0">
                <children>
                   <Button fx:id="btnAddToCart" mnemonicParsing="false" onAction="#addToCart" prefHeight="40.0" prefWidth="150.0" text="Add to cart" />
-                  <Button fx:id="btnMainCourse" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Choose Main Course" />
+                  <Button fx:id="btnMainCourse" mnemonicParsing="false" onAction="#nextScene" prefHeight="40.0" prefWidth="150.0" text="Choose Main Course" />
                </children>
             </HBox>
          </children>

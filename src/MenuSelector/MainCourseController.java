@@ -1,34 +1,16 @@
 package MenuSelector;
 
-/**
- *
- * Tasks for a pass:
- * Provide a choice of 4 starters, 6 mains and 4 desserts
- * Enable 2 customers to select a 1-3 course meal
- * enable them to enter table number and amount of diners
- * submit button which simulates sending info to the kitchen
- * clear the screen for next customer
- * Display the total order with table number, calories and price
- * enable a meal to be paid in cash and display a receipt
- *
- */
-
 import MenuSelector.Food;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-
-//import java.awt.event.ActionEvent;
-import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,8 +18,8 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+public class MainCourseController {
 
-public class StarterCourseController implements Initializable {
     @FXML
     private TableView<Food> tblFoodCart;
     @FXML
@@ -60,24 +42,33 @@ public class StarterCourseController implements Initializable {
     private Label lblTblNo;
 
 
+    private void initCount() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StarterCourseScreen.fxml"));
+        Parent root = loader.load();
+        StarterCourseController c = loader.getController();
+        totalCals2 =+ c.totalCals;
+
+    }
     // Counts for all the labels (Price, calories, amount of food)
-    int foodCount = 0;
-    Double totalPrice = 0.00;
-    int totalCals = 0;
+    private int foodCount = 0;
+    private Double totalPrice = 0.00;
+    private int totalCals2;
+
+    //private int totalCals2 = c.totalCals;
 
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize() throws IOException {
 
+        initCount();
 
         System.out.println("initialise method has been executed."); // debugging check to see if this method is being executed
 
         obSelection.addListener(new InvalidationListener() {
-            @Override
-            public void invalidated(Observable observable) {
-            }
-        }
+                                    @Override
+                                    public void invalidated(Observable observable) {
+                                    }
+                                }
         );
 
         lstCart.setItems(obSelection);
@@ -110,7 +101,7 @@ public class StarterCourseController implements Initializable {
             obSelection.add(food);
             foodCount++;
             totalPrice += food.getPrice();
-            totalCals += food.getCalories();
+            totalCals2 += food.getCalories();
             updateLabels();
         }
     }
@@ -125,7 +116,7 @@ public class StarterCourseController implements Initializable {
             obSelection.remove(food);
             foodCount--;
             totalPrice -= food.getPrice();
-            totalCals -= food.getCalories();
+            totalCals2 -= food.getCalories();
             updateLabels();
         }
     }
@@ -135,7 +126,7 @@ public class StarterCourseController implements Initializable {
         NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
         lblCount.setText("Total Items: " + foodCount);
         lblTotal.setText("Total: "+cf.format(totalPrice));
-        lblCals.setText("Calories: "+totalCals);
+        lblCals.setText("Calories: "+totalCals2);
 
     }
 
@@ -160,24 +151,5 @@ public class StarterCourseController implements Initializable {
         lblTblNo.setText(message);
     }
 
-    public void nextScene(ActionEvent event) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("MainCourseScreen.fxml"));
-        //Scene scene = new Scene(root);
-        Stage window = (Stage) lblTotal.getScene().getWindow();
-        window.setTitle("Choose Main Course");
-        window.setScene(new Scene(root, 600, 400));
-        window.show();
-//        window.setResizable(false);
-
-//        root = FXMLLoader.load(getClass().getResource("authentication.fxml"));
-//        window.initStyle(StageStyle.UNDECORATED);
-//        window.setTitle("Markalyzer");
-//        window.setScene(new Scene(root));
-//        window.show();
-
-
-        }
-
-
-    }
+}
