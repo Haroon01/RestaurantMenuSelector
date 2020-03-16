@@ -39,6 +39,8 @@ public class Main extends Application {
     public Label lblCals;
     @FXML
     public Label lblTblNo;
+    @FXML
+    public ObservableList<Food> foodList = FXCollections.observableArrayList();
 
 
     // Counts for all the labels (Price, calories, amount of food)
@@ -55,16 +57,40 @@ public class Main extends Application {
         primaryStage.show();
         primaryStage.setResizable(false);
 
-
-//        Parent root2 = FXMLLoader.load(getClass().getResource("InitialScreen.fxml"));
-//        primaryStage.setScene(new Scene(root2, 450, 275));
-//        primaryStage.show();
     }
 
-    // @Override
-    public void initialize() {
+    public void initialize(){
+
+    }
 
 
+    // Observable list where all the food is stored to be displayed in the tableView
+    void obInitStarters(){
+        Locale locale = new Locale("en", "GB");
+        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
+        foodList.add(new Food("Kebab", 43, 4.99));
+        foodList.add(new Food("Chicken",65,8.49));
+        foodList.add(new Food("Fish", 31, 7.69));
+        foodList.add(new Food("Chips",82,3.25));
+        foodList.add(new Food("Bread", 52, 1.09));
+        foodList.add(new Food("Cheese",40,2.90));
+        foodList.add(new Food("Spring Roll", 26, 10.99));
+        foodList.add(new Food("Mushroom",97,14.98));
+        foodList.add(new Food("Sausage", 74, 4.00));
+        foodList.add(new Food("Salad",15,2.75));
+        tblFoodCart.setItems(foodList);
+    }
+
+    void obInitMains(){
+        Locale locale = new Locale("en", "GB");
+        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
+        foodList.add(new Food("Soup", 43, 4.99));
+
+        tblFoodCart.setItems(foodList);
+    }
+
+
+    void obSelectionInit(){
         System.out.println("initialise method has been executed."); // debugging check to see if this method is being executed
 
         obSelection.addListener(new InvalidationListener() {
@@ -78,21 +104,17 @@ public class Main extends Application {
 
 
 
+    }
+
+
+    void initCols(){
         // Linking the columns with the constructors in food.java so we can add the correct info in the correct columns
         colItem.setCellValueFactory(new PropertyValueFactory<>("item"));
         colCals.setCellValueFactory(new PropertyValueFactory<>("calories"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 
 
-        // Add all items from Observable list to the tableView
-        tblFoodCart.setItems(foodList);
-
-        updateLabels();
-
     }
-
-
-
 
     public void addToCart (ActionEvent event){
         Locale locale = new Locale("en", "UK");
@@ -125,7 +147,7 @@ public class Main extends Application {
         }
     }
 
-    public void updateLabels(){
+    void updateLabels(){
         Locale locale = new Locale("en", "GB");
         NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
         lblCount.setText("Total Items: " + foodCount);

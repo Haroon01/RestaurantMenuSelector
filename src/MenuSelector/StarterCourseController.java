@@ -39,51 +39,39 @@ import java.util.ResourceBundle;
 
 public class StarterCourseController extends Main{
 
+    @Override
+    public void initialize() {
+        // Add all items from Observable list to the tableView
+        initCols();
+        updateLabels();
+        obInitStarters();
+        obSelectionInit();
 
 
-
-
-
-
-
-    // Observable list where all the food is stored to be displayed in the tableView
-    private ObservableList<Food> foodList = FXCollections.observableArrayList(); {
-        Locale locale = new Locale("en", "GB");
-        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
-        foodList.add(new Food("Kebab", 43, 4.99));
-        foodList.add(new Food("Chicken",65,8.49));
-        foodList.add(new Food("Fish", 31, 7.69));
-        foodList.add(new Food("Chips",82,3.25));
-        foodList.add(new Food("Bread", 52, 1.09));
-        foodList.add(new Food("Cheese",40,2.90));
-        foodList.add(new Food("Spring Roll", 26, 10.99));
-        foodList.add(new Food("Mushroom",97,14.98));
-        foodList.add(new Food("Sausage", 74, 4.00));
-        foodList.add(new Food("Salad",15,2.75));
     }
 
-    public void setTblNo(String message){
-        lblTblNo.setText(message);
-    }
+
+
+
 
     public void nextScene(ActionEvent event) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("MainCourseScreen.fxml"));
+       // Parent root = FXMLLoader.load(getClass().getResource("MainCourseScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainCourseScreen.fxml"));
+        Parent root = loader.load();
+        MainCourseController m2 = loader.getController();
+        m2.setTblNo(lblTblNo.getText());
         //Scene scene = new Scene(root);
         Stage window = (Stage) lblTotal.getScene().getWindow();
         window.setTitle("Choose Main Course");
         window.setScene(new Scene(root, 600, 400));
         window.show();
-//        window.setResizable(false);
-
-//        root = FXMLLoader.load(getClass().getResource("authentication.fxml"));
-//        window.initStyle(StageStyle.UNDECORATED);
-//        window.setTitle("Markalyzer");
-//        window.setScene(new Scene(root));
-//        window.show();
-
-
-        }
-
 
     }
+
+    void setTblNo(String message){
+        lblTblNo.setText(message);
+    }
+
+
+}

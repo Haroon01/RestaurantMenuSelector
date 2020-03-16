@@ -30,6 +30,7 @@ public class InitialScreenController extends Main {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("StarterCourseScreen.fxml"));
                 Parent root = loader.load();
 
+
                 Scene scene = new Scene(root);
 
                 Stage window = (Stage) btnNext.getScene().getWindow(); // use any button/label etc to grab info about current scene
@@ -42,8 +43,10 @@ public class InitialScreenController extends Main {
                 window.setHeight(400);
                 window.setWidth(600);
 
-                StarterCourseController c2 = loader.getController(); //INFO: These 2 lines send userinput from txtTableID to lblTblNo in StarterCourseController class
+                StarterCourseController c2 = loader.getController();//INFO: These 2 lines send userinput from txtTableID to lblTblNo in StarterCourseController class
+
                 c2.setTblNo("Table Number: " + txtTableID.getText());
+
             }
 
     }
