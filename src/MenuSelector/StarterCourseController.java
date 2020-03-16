@@ -27,6 +27,7 @@ import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javax.swing.*;
 import javax.swing.text.NumberFormatter;
 import java.net.URL;
 import java.text.NumberFormat;
@@ -54,6 +55,8 @@ public class StarterCourseController implements Initializable {
     private Label lblTotal;
     @FXML
     private Label lblCals;
+    @FXML
+    private Label lblTblNo;
 
 
     // Counts for all the labels (Price, calories, amount of food)
@@ -62,8 +65,10 @@ public class StarterCourseController implements Initializable {
     private int totalCals = 0;
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
 
         System.out.println("initialise method has been executed."); // debugging check to see if this method is being executed
 
@@ -82,7 +87,6 @@ public class StarterCourseController implements Initializable {
         colItem.setCellValueFactory(new PropertyValueFactory<>("item"));
         colCals.setCellValueFactory(new PropertyValueFactory<>("calories"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-        colPrice.setCellFactory(tc -> new TableCell<Food, Double>());
 
 
         // Add all items from Observable list to the tableView
@@ -94,7 +98,7 @@ public class StarterCourseController implements Initializable {
 
 
 
-        public void addToCart (ActionEvent event){
+    public void addToCart (ActionEvent event){
         Locale locale = new Locale("en", "UK");
         NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
         if (tblFoodCart.getSelectionModel().getSelectedIndex() == -1) {
@@ -116,8 +120,6 @@ public class StarterCourseController implements Initializable {
             Alert error1 = new Alert(Alert.AlertType.ERROR, "Select an item to remove!", ButtonType.OK);
             error1.showAndWait();
         } else {
-            //int index = tblFoodCart.getSelectionModel().getSelectedIndex();
-            //Food food = tblFoodCart.getItems().get(index);
             Food food = lstCart.getSelectionModel().getSelectedItem();
             obSelection.remove(food);
             foodCount--;
@@ -142,10 +144,19 @@ public class StarterCourseController implements Initializable {
         Locale locale = new Locale("en", "GB");
         NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
         foodList.add(new Food("Kebab", 43, 4.99));
-        foodList.add(new Food("Chicken",65,8.99));
+        foodList.add(new Food("Chicken",65,8.49));
+        foodList.add(new Food("Fish", 31, 7.69));
+        foodList.add(new Food("Chips",82,3.25));
+        foodList.add(new Food("Bread", 52, 1.09));
+        foodList.add(new Food("Cheese",40,2.90));
+        foodList.add(new Food("Spring Roll", 26, 10.99));
+        foodList.add(new Food("Mushroom",97,14.98));
+        foodList.add(new Food("Sausage", 74, 4.00));
+        foodList.add(new Food("Salad",15,2.75));
     }
 
-
-
+    public void setTblNo(String message){
+        lblTblNo.setText(message);
+    }
 
 }
