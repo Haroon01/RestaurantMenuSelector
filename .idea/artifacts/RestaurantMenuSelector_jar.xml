@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="RestaurantMenuSelector:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/RestaurantMenuSelector_jar</output-path>
+    <root id="archive" name="RestaurantMenuSelector.jar">
+      <element id="module-output" name="RestaurantMenuSelector" />
+    </root>
+  </artifact>
+</component>
