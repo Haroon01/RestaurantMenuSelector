@@ -19,6 +19,13 @@ import java.util.Locale;
 
 public class Main extends Application {
 
+
+    @FXML
+    public TextField txtCustomers;
+    @FXML
+    public TextField txtTableID;
+    @FXML
+    public Button btnNext;
     @FXML
     public TableView<Food> tblFoodCart;
     @FXML
@@ -28,7 +35,7 @@ public class Main extends Application {
     @FXML
     public TableColumn<Food, Double> colPrice;
     @FXML
-    public ObservableList<Food> obSelection = FXCollections.observableArrayList();
+    private ObservableList<Food> obSelection = FXCollections.observableArrayList();
     @FXML
     public ListView<Food> lstCart;
     @FXML
@@ -40,13 +47,35 @@ public class Main extends Application {
     @FXML
     public Label lblTblNo;
     @FXML
-    public ObservableList<Food> foodList = FXCollections.observableArrayList();
+    private ObservableList<Food> foodList = FXCollections.observableArrayList();
 
 
     // Counts for all the labels (Price, calories, amount of food)
     int foodCount = 0;
     Double totalPrice = 0.00;
     int totalCals = 0;
+
+    public String getTxtTableID() {
+        System.out.println(txtTableID.getText());
+        return txtTableID.getText();
+    }
+
+    public int getFoodCount() {
+        return foodCount;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public int getTotalCals() {
+        return totalCals;
+    }
+
+    int updateTotals(int count){
+        totalCals =+ count;
+        return totalCals;
+    }
 
 
     @Override
@@ -152,10 +181,26 @@ public class Main extends Application {
         NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
         lblCount.setText("Total Items: " + foodCount);
         lblTotal.setText("Total: "+cf.format(totalPrice));
-        lblCals.setText("Calories: "+totalCals);
+        lblCals.setText("Calories: "+ totalCals);
 
     }
 
+    void passInfo(String tblMsg, Double total, int count, int calories){
+        Locale locale = new Locale("en", "GB");
+        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
+        lblTblNo.setText(tblMsg);
+        totalPrice =+ total;
+        totalCals =+ calories;
+        foodCount =+ count;
+        lblTotal.setText("Total: " + cf.format(total));
+        lblCals.setText("Calories: " + calories);
+        lblCount.setText("Total Food: " + count);
+
+    }
+
+    void setTblNo(String message){
+        lblTblNo.setText(message);
+    }
 
     public static void main(String[] args) {
         launch(args);

@@ -13,12 +13,6 @@ import java.io.IOException;
 
 public class InitialScreenController extends Main {
 
-    @FXML
-    private TextField txtCustomers;
-    @FXML
-    public TextField txtTableID;
-    @FXML
-    private Button btnNext;
 
     public void nextScene(ActionEvent event) throws IOException{
             if (txtTableID.getText().isEmpty() || txtCustomers.getText().isEmpty()){
@@ -45,7 +39,8 @@ public class InitialScreenController extends Main {
 
                 StarterCourseController c2 = loader.getController();//INFO: These 2 lines send userinput from txtTableID to lblTblNo in StarterCourseController class
 
-                c2.setTblNo("Table Number: " + txtTableID.getText());
+                c2.passInfo("Table Number: " + txtTableID.getText(), getTotalPrice(), getFoodCount(), getTotalCals());
+
 
             }
 

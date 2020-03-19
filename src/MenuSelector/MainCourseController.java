@@ -20,27 +20,13 @@ import java.util.ResourceBundle;
 
 public class MainCourseController extends Main {
 
-//    private void initCount() throws IOException {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("StarterCourseScreen.fxml"));
-//        Parent root = loader.load();
-//        StarterCourseController c = loader.getController();
-//        totalCals2 =+ c.totalCals;
-//
-//    }
-//    // Counts for all the labels (Price, calories, amount of food)
-//    private int foodCount = 0;
-//    private Double totalPrice = 0.00;
-//    private int totalCals2;
-
-    //private int totalCals2 = c.totalCals;
-
     @Override
     public void initialize() {
         initCols();
-        updateLabels();
         obInitMains();
         obSelectionInit();
-
+        setTotal(getTotalPrice());
+        //updateTotals(totalCals);
     }
 
 
@@ -49,6 +35,14 @@ public class MainCourseController extends Main {
     public void setTblNo(String message){
         lblTblNo.setText(message);
     }
+
+    void setTotal(Double total){
+        Locale locale = new Locale("en", "GB");
+        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
+        totalPrice =+ total;
+        lblTotal.setText("Total: "+ cf.format(total));
+    }
+
 
 
 }
