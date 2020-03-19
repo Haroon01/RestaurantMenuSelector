@@ -28,8 +28,11 @@ import javafx.scene.control.*;
 //import java.awt.event.ActionEvent;
 import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.text.NumberFormat;
@@ -74,6 +77,10 @@ public class StarterCourseController extends Main{
 
 
 
+    }
+
+    public void pressed(MouseEvent e){
+        lstCart.setVisible(false);
     }
 
 
