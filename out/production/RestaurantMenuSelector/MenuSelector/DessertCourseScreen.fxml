@@ -15,7 +15,7 @@
     <children>
         <VBox alignment="CENTER" layoutX="154.0" layoutY="60.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label text="Select Your Main(s)">
+                <Label text="Select Your Dessert(s)">
                     <font>
                         <Font name="System Bold" size="34.0" />
                     </font>
@@ -55,7 +55,7 @@
                 <HBox alignment="CENTER" prefHeight="59.0" prefWidth="600.0" spacing="30.0">
                     <children>
                         <Button fx:id="btnAddToCart" mnemonicParsing="false" onAction="#addToCart" prefHeight="40.0" prefWidth="150.0" text="Add to cart" />
-                        <Button fx:id="btnDessert" mnemonicParsing="false" onAction="#nextScene" prefHeight="40.0" prefWidth="150.0" text="Choose Dessert" />
+                        <Button fx:id="btnDessert" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Checkout" />
                     </children>
                 </HBox>
             </children>

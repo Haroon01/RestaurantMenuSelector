@@ -9,8 +9,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,6 +29,24 @@ public class MainCourseController extends Main {
         obSelectionInit();
         setTotal(getTotalPrice());
         //updateTotals(totalCals);
+    }
+
+    public void nextScene(ActionEvent event) throws IOException {
+
+        // Parent root = FXMLLoader.load(getClass().getResource("MainCourseScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("DessertCourseScreen.fxml"));
+        Parent root = loader.load();
+        DessertCourseController c2 = loader.getController();
+        c2.passInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals());
+        //m2.setTblNo(txtTableID.getText());
+        Stage window = (Stage) lblTotal.getScene().getWindow();
+        window.setTitle("Choose Main Course");
+        window.setScene(new Scene(root, 600, 400));
+        System.out.println(totalCals);
+        //updateTotals(totalCals);
+        window.show();
+
+
     }
 
 
