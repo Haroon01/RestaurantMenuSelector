@@ -79,9 +79,7 @@ public class StarterCourseController extends Main{
 
     }
 
-    public void pressed(MouseEvent e){
-        lstCart.setVisible(false);
-    }
+
 
 
 
