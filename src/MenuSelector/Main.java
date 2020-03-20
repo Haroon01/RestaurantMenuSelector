@@ -15,6 +15,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class Main extends Application {
@@ -48,6 +50,8 @@ public class Main extends Application {
     public Label lblTblNo;
     @FXML
     private ObservableList<Food> foodList = FXCollections.observableArrayList();
+    @FXML
+    public List<Food> finalFoodList = obSelection; //FIXME: This works but resets after every scene switch
 
 
     // Counts for all the labels (Price, calories, amount of food)
@@ -102,10 +106,10 @@ public class Main extends Application {
         foodList.add(new Food("Fish", 31, 7.69));
         foodList.add(new Food("Chips",82,3.25));
         foodList.add(new Food("Bread", 52, 1.09));
-        foodList.add(new Food("Cheese",40,2.90));
+        foodList.add(new Food("Cheese",40,2.97));
         foodList.add(new Food("Spring Roll", 26, 10.99));
         foodList.add(new Food("Mushroom",97,14.98));
-        foodList.add(new Food("Sausage", 74, 4.00));
+        foodList.add(new Food("Sausage", 74, 4.45));
         foodList.add(new Food("Salad",15,2.75));
         tblFoodCart.setItems(foodList);
     }
@@ -113,7 +117,28 @@ public class Main extends Application {
     void obInitMains(){
         Locale locale = new Locale("en", "GB");
         NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
-        foodList.add(new Food("Soup", 43, 4.99));
+        foodList.add(new Food("Soup", 60, 5.99));
+        foodList.add(new Food("Lasanga", 137, 7.95));
+        foodList.add(new Food("Rice n Chicken", 283, 6.45));
+        foodList.add(new Food("Turkey", 391, 19.99));
+        foodList.add(new Food("Shephards Pie", 179, 5.35));
+        foodList.add(new Food("Pasta", 679, 6.49));
+        foodList.add(new Food("Parmesan Chicken", 923, 7.89));
+        foodList.add(new Food("Roast Chicken", 182, 29.99));
+        foodList.add(new Food("Baked Potato", 164, 2.89));
+        tblFoodCart.setItems(foodList);
+    }
+
+    void obInitDessert(){
+        Locale locale = new Locale("en", "GB");
+        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
+        foodList.add(new Food("Cheesecake", 435, 6.15));
+        foodList.add(new Food("Cake & Custard", 263, 3.56));
+        foodList.add(new Food("Vanilla Ice cream", 837, 4.86));
+        foodList.add(new Food("Banoffee Pie", 182, 9.59));
+        foodList.add(new Food("Waffle", 473, 10.49));
+        foodList.add(new Food("Cookie Dough", 205, 6.25));
+        foodList.add(new Food("Crêpes", 486, 7.39));
 
         tblFoodCart.setItems(foodList);
     }
@@ -158,6 +183,7 @@ public class Main extends Application {
             totalPrice += food.getPrice();
             totalCals += food.getCalories();
             updateLabels();
+            System.out.println(finalFoodList);
         }
     }
 
@@ -197,6 +223,7 @@ public class Main extends Application {
         lblCount.setText("Total Food: " + count);
 
     }
+
 
     void setTblNo(String message){
         lblTblNo.setText(message);

@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import javax.swing.text.NumberFormatter;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -23,6 +24,8 @@ public class Food {
 
     @Override
     public String toString() {
+        Locale locale = new Locale("en", "GB");
+        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
         return "" + this.getItem();
     }
 

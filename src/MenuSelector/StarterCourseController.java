@@ -59,6 +59,7 @@ public class StarterCourseController extends Main{
 
     public void nextScene(ActionEvent event) throws IOException {
 
+
         // Parent root = FXMLLoader.load(getClass().getResource("MainCourseScreen.fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainCourseScreen.fxml"));
         Parent root = loader.load();

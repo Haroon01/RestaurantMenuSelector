@@ -8,7 +8,7 @@ public class DessertCourseController extends Main {
     @Override
     public void initialize() {
         initCols();
-        obInitMains();
+        obInitDessert();
         obSelectionInit();
         setTotal(getTotalPrice());
         //updateTotals(totalCals);
