@@ -37,7 +37,7 @@ public class Main extends Application {
     @FXML
     public TableColumn<Food, Double> colPrice;
     @FXML
-    private ObservableList<Food> obSelection = FXCollections.observableArrayList();
+    public ObservableList<Food> obSelection = FXCollections.observableArrayList();
     @FXML
     public ListView<Food> lstCart;
     @FXML
@@ -221,6 +221,7 @@ public class Main extends Application {
         lblTotal.setText("Total: " + cf.format(total));
         lblCals.setText("Calories: " + calories);
         lblCount.setText("Total Food: " + count);
+        finalFoodList.addAll(obSelection);
 
     }
 
