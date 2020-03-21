@@ -223,6 +223,7 @@ public class Main extends Application {
         lblCount.setText("Total Food: " + count);
         finalFoodList.addAll(obSelection);
 
+
     }
 
 
