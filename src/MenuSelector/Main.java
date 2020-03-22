@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,9 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class Main extends Application {
 
@@ -37,7 +36,11 @@ public class Main extends Application {
     @FXML
     public TableColumn<Food, Double> colPrice;
     @FXML
+    public ObservableList<Food> foodList = FXCollections.observableArrayList();
+    @FXML
     public ObservableList<Food> obSelection = FXCollections.observableArrayList();
+    @FXML
+    public ArrayList<Food> finalFoodList = new ArrayList<>();//FIXME: This works but resets after every scene switch
     @FXML
     public ListView<Food> lstCart;
     @FXML
@@ -49,9 +52,11 @@ public class Main extends Application {
     @FXML
     public Label lblTblNo;
     @FXML
-    private ObservableList<Food> foodList = FXCollections.observableArrayList();
+    public ArrayList<Food> finalStarters = new ArrayList<>();
     @FXML
-    public List<Food> finalFoodList = obSelection; //FIXME: This works but resets after every scene switch
+    public Button btnCheckout;
+
+
 
 
     // Counts for all the labels (Price, calories, amount of food)
@@ -81,6 +86,16 @@ public class Main extends Application {
         return totalCals;
     }
 
+    public ArrayList<Food> getFinalFoodList() {
+        return finalFoodList;
+    }
+
+    public ObservableList<Food> getItemsAsOList(){
+        return FXCollections.observableArrayList(finalFoodList);
+    }
+    public ObservableList<Food> getObList(){
+        return obSelection;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -92,9 +107,15 @@ public class Main extends Application {
 
     }
 
+
     public void initialize(){
 
+
+
+
     }
+
+
 
 
     // Observable list where all the food is stored to be displayed in the tableView
@@ -143,6 +164,14 @@ public class Main extends Application {
         tblFoodCart.setItems(foodList);
     }
 
+    void obInitCheckout(){
+
+        System.out.println(getItemsAsOList());
+
+        tblFoodCart.setItems(getItemsAsOList());
+
+    }
+
 
     void obSelectionInit(){
         System.out.println("initialise method has been executed."); // debugging check to see if this method is being executed
@@ -184,6 +213,7 @@ public class Main extends Application {
             totalCals += food.getCalories();
             updateLabels();
             System.out.println(finalFoodList);
+            System.out.println(obSelection);
         }
     }
 
@@ -211,7 +241,8 @@ public class Main extends Application {
 
     }
 
-    void passInfo(String tblMsg, Double total, int count, int calories){
+    void passInfo(String tblMsg, Double total, int count, int calories, ObservableList<Food> list){
+        System.out.println("passinfo");
         Locale locale = new Locale("en", "GB");
         NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
         lblTblNo.setText(tblMsg);
@@ -226,10 +257,28 @@ public class Main extends Application {
 
     }
 
+    void finalPassInfo(String tblMsg, Double total, int count, int calories, ObservableList<Food> list){
+        Locale locale = new Locale("en", "GB");
+        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
+        lblTblNo.setText(tblMsg);
+        totalPrice =+ total;
+        totalCals =+ calories;
+        foodCount =+ count;
+        lblTotal.setText("Total price to pay: " + cf.format(total));
+        lblCount.setText("Total Items: " + count);
+        finalFoodList.addAll(list);
+
+
+    }
 
     void setTblNo(String message){
         lblTblNo.setText(message);
     }
+
+//    void storeStarters(){
+//        finalStarters.addAll(obSelection);
+//        System.out.println(finalStarters);
+//    }
 
     public static void main(String[] args) {
         launch(args);

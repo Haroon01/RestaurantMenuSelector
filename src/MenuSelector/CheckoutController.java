@@ -1,13 +1,25 @@
 package MenuSelector;
 
-import javafx.fxml.Initializable;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.text.NumberFormat;
+import java.util.Locale;
 
-public class CheckoutController implements Initializable {
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+public class CheckoutController extends Main {
+
+    public void initialize() {
+
+        initCols();
+        obInitCheckout();
+
+        setTotal(getTotalPrice());
 
     }
+
+    void setTotal(Double total){
+        Locale locale = new Locale("en", "GB");
+        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
+        totalPrice =+ total;
+        lblTotal.setText("Total prioe to pay: "+ cf.format(total));
+    }
+
 }

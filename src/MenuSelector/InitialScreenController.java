@@ -1,5 +1,6 @@
 package MenuSelector;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,7 +40,7 @@ public class InitialScreenController extends Main {
 
                 StarterCourseController c2 = loader.getController();//INFO: These 2 lines send userinput from txtTableID to lblTblNo in StarterCourseController class
 
-                c2.passInfo("Table Number: " + txtTableID.getText(), getTotalPrice(), getFoodCount(), getTotalCals());
+                c2.passInfo("Table Number: " + txtTableID.getText(), getTotalPrice(), getFoodCount(), getTotalCals(), getObList());
 
 
             }
