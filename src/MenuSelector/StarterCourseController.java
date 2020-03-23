@@ -66,7 +66,7 @@ public class StarterCourseController extends Main{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainCourseScreen.fxml"));
         Parent root = loader.load();
         MainCourseController m2 = loader.getController();
-        m2.passInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals(), getObList());
+        m2.passInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals(), getFinalFoodList());
         //m2.setTblNo(txtTableID.getText());
         Stage window = (Stage) lblTotal.getScene().getWindow();
         window.setTitle("Choose Main Course");

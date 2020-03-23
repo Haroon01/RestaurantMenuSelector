@@ -166,7 +166,8 @@ public class Main extends Application {
 
     void obInitCheckout(){
 
-        System.out.println(getItemsAsOList());
+        System.out.println("array" + finalFoodList);
+        System.out.println("getitemsasOblist" + getItemsAsOList());
 
         tblFoodCart.setItems(getItemsAsOList());
 
@@ -208,6 +209,7 @@ public class Main extends Application {
         } else {
             Food food = tblFoodCart.getSelectionModel().getSelectedItem();
             obSelection.add(food);
+            finalFoodList.add(food);
             foodCount++;
             totalPrice += food.getPrice();
             totalCals += food.getCalories();
@@ -241,7 +243,7 @@ public class Main extends Application {
 
     }
 
-    void passInfo(String tblMsg, Double total, int count, int calories, ObservableList<Food> list){
+    void passInfo(String tblMsg, Double total, int count, int calories, ArrayList<Food> list){
         System.out.println("passinfo");
         Locale locale = new Locale("en", "GB");
         NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
@@ -252,12 +254,12 @@ public class Main extends Application {
         lblTotal.setText("Total: " + cf.format(total));
         lblCals.setText("Calories: " + calories);
         lblCount.setText("Total Food: " + count);
-        finalFoodList.addAll(obSelection);
+        finalFoodList.addAll(list);
 
 
     }
 
-    void finalPassInfo(String tblMsg, Double total, int count, int calories, ObservableList<Food> list){
+    void finalPassInfo(String tblMsg, Double total, int count, int calories, ArrayList<Food> list){
         Locale locale = new Locale("en", "GB");
         NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
         lblTblNo.setText(tblMsg);
