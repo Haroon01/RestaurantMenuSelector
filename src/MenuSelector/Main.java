@@ -255,6 +255,7 @@ public class Main extends Application {
         foodCount =+ count;
         lblTotal.setText("Total price to pay: " + cf.format(total));
         lblCount.setText("Total Items: " + count);
+        lblCals.setText("Total Calories: " + calories);
 
 
 
