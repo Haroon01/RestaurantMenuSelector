@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
 import java.text.NumberFormat;
@@ -23,18 +24,34 @@ public class DessertCourseController extends Main {
 
     public void nextScene(ActionEvent event) throws IOException {
 
-        // Parent root = FXMLLoader.load(getClass().getResource("MainCourseScreen.fxml"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("CheckoutScreen.fxml"));
+        Window mainWindow = lblTotal.getScene().getWindow();
+
+        // create an instance eof the Loader which is used to open the next screen.
+        FXMLLoader loader = new FXMLLoader();
+        //set the location
+        loader.setLocation(getClass().getResource("CheckoutScreen.fxml"));
+        // add loader to root
         Parent root = loader.load();
-        CheckoutController cc1 = loader.getController();
-        cc1.finalPassInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals(), getFinalFoodList());
-        //m2.setTblNo(txtTableID.getText());
-        Stage window = (Stage) lblTotal.getScene().getWindow();
-        window.setTitle("Choose Main Course");
-        window.setScene(new Scene(root, 600, 400));
-        System.out.println(totalCals);
-        //updateTotals(totalCals);
-        window.show();
+        //get the controller of the loader just created
+        CheckoutController screen2Controller = loader.getController();
+        //call method which receives data in new controller and pass it the value required.
+        screen2Controller.dataReceiverFinal(getObList());
+        screen2Controller.finalPassInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals());
+
+        mainWindow.getScene().setRoot(root);
+//
+//        // Parent root = FXMLLoader.load(getClass().getResource("MainCourseScreen.fxml"));
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("CheckoutScreen.fxml"));
+//        Parent root = loader.load();
+//        CheckoutController c = loader.getController();
+//        c.finalPassInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals(), getObList());
+//        //m2.setTblNo(txtTableID.getText());
+//        Stage window = (Stage) lblTotal.getScene().getWindow();
+//        window.setTitle("Choose Main Course");
+//        window.setScene(new Scene(root, 600, 400));
+//        System.out.println(totalCals);
+//        //updateTotals(totalCals);
+//        window.show();
 
 
     }

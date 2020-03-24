@@ -40,7 +40,7 @@ public class InitialScreenController extends Main {
 
                 StarterCourseController c2 = loader.getController();//INFO: These 2 lines send userinput from txtTableID to lblTblNo in StarterCourseController class
 
-                c2.passInfo("Table Number: " + txtTableID.getText(), getTotalPrice(), getFoodCount(), getTotalCals(), getFinalFoodList());
+                c2.passInfo("Table Number: " + txtTableID.getText(), getTotalPrice(), getFoodCount(), getTotalCals());
 
 
             }

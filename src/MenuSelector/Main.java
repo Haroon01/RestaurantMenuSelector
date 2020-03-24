@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -64,10 +63,6 @@ public class Main extends Application {
     Double totalPrice = 0.00;
     int totalCals = 0;
 
-    public String getTxtTableID() {
-        System.out.println(txtTableID.getText());
-        return txtTableID.getText();
-    }
 
     public int getFoodCount() {
         return foodCount;
@@ -81,14 +76,6 @@ public class Main extends Application {
         return totalCals;
     }
 
-    int updateTotals(int count){
-        totalCals =+ count;
-        return totalCals;
-    }
-
-    public ArrayList<Food> getFinalFoodList() {
-        return finalFoodList;
-    }
 
     public ObservableList<Food> getItemsAsOList(){
         return FXCollections.observableArrayList(finalFoodList);
@@ -243,7 +230,7 @@ public class Main extends Application {
 
     }
 
-    void passInfo(String tblMsg, Double total, int count, int calories, ArrayList<Food> list){
+    void passInfo(String tblMsg, Double total, int count, int calories){
         System.out.println("passinfo");
         Locale locale = new Locale("en", "GB");
         NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
@@ -254,12 +241,12 @@ public class Main extends Application {
         lblTotal.setText("Total: " + cf.format(total));
         lblCals.setText("Calories: " + calories);
         lblCount.setText("Total Food: " + count);
-        finalFoodList.addAll(list);
+
 
 
     }
 
-    void finalPassInfo(String tblMsg, Double total, int count, int calories, ArrayList<Food> list){
+    void finalPassInfo(String tblMsg, Double total, int count, int calories){
         Locale locale = new Locale("en", "GB");
         NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
         lblTblNo.setText(tblMsg);
@@ -268,19 +255,42 @@ public class Main extends Application {
         foodCount =+ count;
         lblTotal.setText("Total price to pay: " + cf.format(total));
         lblCount.setText("Total Items: " + count);
-        finalFoodList.addAll(list);
+
 
 
     }
+
+
+//    public void nextScene(ActionEvent event, Button btn, String fxml, Cast controller, ) throws IOException {
+//
+//        Window mainWindow = btn.getScene().getWindow();
+//
+//        // create an instance eof the Loader which is used to open the next screen.
+//        FXMLLoader loader = new FXMLLoader();
+//        //set the location
+//        loader.setLocation(getClass().getResource(fxml));
+//        // add loader to root
+//        Parent root = loader.load();
+//        //get the controller of the loader just created
+//        controller ctrl = loader.getController();
+//        //call method which receives data in new controller and pass it the value required.
+//        screen2Controller.dataReceiver(obSelection);
+//
+//        mainWindow.getScene().setRoot(root);
+//    } TODO: cant ask for a class as a parameter
+
+    //this can accept anything, could be an arraylist, or even an instance of another class.
+    public void dataReceiver(ObservableList<Food> list){
+        //this.message = passedMessage;
+        obSelection.addAll(list);
+
+    }
+
 
     void setTblNo(String message){
         lblTblNo.setText(message);
     }
 
-//    void storeStarters(){
-//        finalStarters.addAll(obSelection);
-//        System.out.println(finalStarters);
-//    }
 
     public static void main(String[] args) {
         launch(args);

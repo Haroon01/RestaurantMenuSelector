@@ -29,6 +29,7 @@ import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
 import java.net.URL;
@@ -62,22 +63,40 @@ public class StarterCourseController extends Main{
     public void nextScene(ActionEvent event) throws IOException {
 
 
-        // Parent root = FXMLLoader.load(getClass().getResource("MainCourseScreen.fxml"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainCourseScreen.fxml"));
+        Window mainWindow = lblTotal.getScene().getWindow();
+
+        // create an instance eof the Loader which is used to open the next screen.
+        FXMLLoader loader = new FXMLLoader();
+        //set the location
+        loader.setLocation(getClass().getResource("MainCourseScreen.fxml"));
+        // add loader to root
         Parent root = loader.load();
-        MainCourseController m2 = loader.getController();
-        m2.passInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals(), getFinalFoodList());
-        //m2.setTblNo(txtTableID.getText());
-        Stage window = (Stage) lblTotal.getScene().getWindow();
-        window.setTitle("Choose Main Course");
-        window.setScene(new Scene(root, 600, 400));
-        System.out.println(totalCals);
-        //updateTotals(totalCals);
-        window.show();
+        //get the controller of the loader just created
+        MainCourseController screen2Controller = loader.getController();
+        //call method which receives data in new controller and pass it the value required.
+        screen2Controller.dataReceiver(getObList());
+        screen2Controller.passInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals());
 
-
-
+        mainWindow.getScene().setRoot(root);
     }
+
+
+//        // Parent root = FXMLLoader.load(getClass().getResource("MainCourseScreen.fxml"));
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainCourseScreen.fxml"));
+//        Parent root = loader.load();
+//        MainCourseController m2 = loader.getController();
+//        m2.passInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals(), getObList());
+//        //m2.setTblNo(txtTableID.getText());
+//        Stage window = (Stage) lblTotal.getScene().getWindow();
+//        window.setTitle("Choose Main Course");
+//        window.setScene(new Scene(root, 600, 400));
+//        System.out.println(totalCals);
+//        //updateTotals(totalCals);
+//        window.show();
+
+
+
+
 
 
 
