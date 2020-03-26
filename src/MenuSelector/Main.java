@@ -156,7 +156,7 @@ public class Main extends Application {
         System.out.println("array" + finalFoodList);
         System.out.println("getitemsasOblist" + getItemsAsOList());
 
-        tblFoodCart.setItems(getItemsAsOList());
+        tblFoodCart.setItems(obSelection);
 
     }
 
@@ -201,7 +201,7 @@ public class Main extends Application {
             totalPrice += food.getPrice();
             totalCals += food.getCalories();
             updateLabels();
-            System.out.println(finalFoodList);
+            //System.out.println(finalFoodList);
             System.out.println(obSelection);
         }
     }
@@ -288,9 +288,6 @@ public class Main extends Application {
     }
 
 
-    void setTblNo(String message){
-        lblTblNo.setText(message);
-    }
 
 
     public static void main(String[] args) {

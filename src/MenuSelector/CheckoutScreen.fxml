@@ -67,7 +67,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="59.0" prefWidth="600.0" spacing="30.0">
                <children>
-                  <Button fx:id="btnCash" mnemonicParsing="false" onAction="#payWithCash" prefHeight="40.0" prefWidth="150.0" text="Pay with Cash" />
+                  <Button fx:id="btnCash" mnemonicParsing="false" onAction="#nextScene" prefHeight="40.0" prefWidth="150.0" text="Pay with Cash" />
                   <Button fx:id="btnCard" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Pay with Card" />
                </children>
             </HBox>

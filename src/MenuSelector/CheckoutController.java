@@ -17,7 +17,7 @@ public class CheckoutController extends Main {
     public void initialize() {
 
         initCols();
-        obInitCheckout();
+        //obInitCheckout();
 
         setTotal(getTotalPrice());
 
@@ -37,8 +37,7 @@ public class CheckoutController extends Main {
     }
 
     public void payWithCash(ActionEvent e) throws IOException {
-        Window mainWindow = tblFoodCart.getScene().getWindow();
-
+        Window mainWindow = lblTotal.getScene().getWindow();
         // create an instance eof the Loader which is used to open the next screen.
         FXMLLoader loader = new FXMLLoader();
         //set the location
@@ -51,6 +50,35 @@ public class CheckoutController extends Main {
 
 
         mainWindow.getScene().setRoot(root);
+    }
+
+
+    public void nextScene(ActionEvent event) throws IOException {
+
+
+        Window mainWindow = lblTotal.getScene().getWindow();
+
+        // create an instance eof the Loader which is used to open the next screen.
+        FXMLLoader loader = new FXMLLoader();
+        //set the location
+        loader.setLocation(getClass().getResource("PaidScreen.fxml"));
+        // add loader to root
+        Parent root = loader.load();
+        //get the controller of the loader just created
+        PaidController screen2Controller = loader.getController();
+        //call method which receives data in new controller and pass it the value required.
+        screen2Controller.dataReceiverFinal(getObList());
+        screen2Controller.finalPassInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals());
+        System.out.println("getObList" + getObList());
+        System.out.println("obselection" + obSelection);
+        System.out.println("tblfoodCart"+ );
+        mainWindow.setHeight(626);
+        mainWindow.setWidth(405);
+
+        mainWindow.getScene().setRoot(root);
+
+
+
     }
 
     public void dataReceiverChck(String newDetails){

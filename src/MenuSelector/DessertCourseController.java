@@ -39,19 +39,7 @@ public class DessertCourseController extends Main {
         screen2Controller.finalPassInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals());
 
         mainWindow.getScene().setRoot(root);
-//
-//        // Parent root = FXMLLoader.load(getClass().getResource("MainCourseScreen.fxml"));
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("CheckoutScreen.fxml"));
-//        Parent root = loader.load();
-//        CheckoutController c = loader.getController();
-//        c.finalPassInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals(), getObList());
-//        //m2.setTblNo(txtTableID.getText());
-//        Stage window = (Stage) lblTotal.getScene().getWindow();
-//        window.setTitle("Choose Main Course");
-//        window.setScene(new Scene(root, 600, 400));
-//        System.out.println(totalCals);
-//        //updateTotals(totalCals);
-//        window.show();
+
 
 
     }
