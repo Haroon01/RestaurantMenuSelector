@@ -253,13 +253,22 @@ public class Main extends Application {
         totalPrice =+ total;
         totalCals =+ calories;
         foodCount =+ count;
-        lblTotal.setText("Total price to pay: " + cf.format(total));
+        lblTotal.setText("Total due: " + cf.format(total));
         lblCount.setText("Total Items: " + count);
         lblCals.setText("Total Calories: " + calories);
-
-
-
     }
+    void finalPassInfo2(String tblMsg, Double total, int count, int calories){
+        Locale locale = new Locale("en", "GB");
+        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
+        lblTblNo.setText(tblMsg);
+        totalPrice =+ total;
+        totalCals =+ calories;
+        foodCount =+ count;
+        lblTotal.setText("Total paid: " + cf.format(total));
+        lblCount.setText("Total Items: " + count);
+        lblCals.setText("Total Calories: " + calories);
+    }
+
 
 
 //    public void nextScene(ActionEvent event, Button btn, String fxml, Cast controller, ) throws IOException {

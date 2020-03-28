@@ -69,7 +69,7 @@ public class CheckoutController extends Main {
         PaidController screen2Controller = loader.getController();
         //call method which receives data in new controller and pass it the value required.
         screen2Controller.dataReceiverFinal(getObList());
-        screen2Controller.finalPassInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals());
+        screen2Controller.finalPassInfo2(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals());
         System.out.println("getObList" + getObList());
         System.out.println("obselection" + obSelection);
         mainWindow.setHeight(626);
