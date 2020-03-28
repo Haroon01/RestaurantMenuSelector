@@ -32,6 +32,7 @@ public class CheckoutController extends Main {
     public void dataReceiverFinal(ObservableList<Food> list){
         System.out.println("data received");
         //this.obSelection = list;
+        obSelection.setAll(list);
         tblFoodCart.setItems(list);
 
     }
@@ -71,10 +72,9 @@ public class CheckoutController extends Main {
         screen2Controller.finalPassInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals());
         System.out.println("getObList" + getObList());
         System.out.println("obselection" + obSelection);
-        System.out.println("tblfoodCart"+ );
         mainWindow.setHeight(626);
         mainWindow.setWidth(405);
-
+        setTitle("Order Successful");
         mainWindow.getScene().setRoot(root);
 
 

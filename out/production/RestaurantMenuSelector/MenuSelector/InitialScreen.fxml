@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" prefHeight="262.0" prefWidth="440.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuSelector.InitialScreenController">
+<GridPane alignment="center" hgap="10" prefHeight="289.0" prefWidth="440.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuSelector.InitialScreenController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -18,46 +20,60 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <AnchorPane prefHeight="414.0" prefWidth="440.0">
+      <AnchorPane prefHeight="279.0" prefWidth="440.0">
          <children>
-            <VBox alignment="CENTER" layoutX="198.0" layoutY="90.0" prefHeight="136.0" prefWidth="228.0" spacing="30.0" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="70.0">
+            <VBox alignment="CENTER" prefHeight="279.0" prefWidth="440.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TextField fx:id="txtTableID">
+                  <Label alignment="CENTER" prefHeight="44.0" prefWidth="235.0" text="WELCOME" textAlignment="CENTER">
                      <font>
-                        <Font size="20.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="txtCustomers">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" layoutY="90.0" prefHeight="138.0" prefWidth="195.0" spacing="50.0" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0">
-               <children>
-                  <Label text="Table ID">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="System Bold" size="37.0" />
                      </font>
                   </Label>
-                  <Label text="Amount of Customers">
+                  <VBox alignment="CENTER" prefHeight="136.0" prefWidth="228.0" spacing="20.0">
+                     <children>
+                        <HBox alignment="CENTER" spacing="95.0">
+                           <children>
+                              <Label text="Table ID">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtTableID" prefHeight="44.0" prefWidth="240.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="5.0">
+                           <children>
+                              <Label prefHeight="35.0" prefWidth="168.0" text="Amount of Customers">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtCustomers" prefHeight="44.0" prefWidth="240.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </VBox>
+                  <Button fx:id="btnNext" mnemonicParsing="false" onAction="#nextScene" prefHeight="30.0" prefWidth="132.0" text="Next">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
-                  </Label>
+                  </Button>
                </children>
+               <padding>
+                  <Insets bottom="15.0" left="5.0" right="3.0" top="5.0" />
+               </padding>
             </VBox>
-            <Label alignment="CENTER" layoutX="103.0" layoutY="14.0" prefHeight="44.0" prefWidth="235.0" text="WELCOME" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="37.0" />
-               </font>
-            </Label>
-            <Button fx:id="btnNext" layoutX="154.0" layoutY="218.0" mnemonicParsing="false" onAction="#nextScene" prefHeight="30.0" prefWidth="132.0" text="Next" AnchorPane.bottomAnchor="14.0" AnchorPane.topAnchor="218.0">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
          </children>
       </AnchorPane>
    </children>

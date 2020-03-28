@@ -37,6 +37,7 @@ public class DessertCourseController extends Main {
         //call method which receives data in new controller and pass it the value required.
         screen2Controller.dataReceiverFinal(getObList());
         screen2Controller.finalPassInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals());
+        setTitle("Checkout");
 
         mainWindow.getScene().setRoot(root);
 

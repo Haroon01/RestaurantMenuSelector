@@ -34,24 +34,6 @@ public class MainCourseController extends Main {
 
     public void nextScene(ActionEvent event) throws IOException {
 
-
-//            Window mainWindow = lblTotal.getScene().getWindow();
-//
-//            // create an instance eof the Loader which is used to open the next screen.
-//            FXMLLoader loader = new FXMLLoader();
-//            //set the location
-//            loader.setLocation(getClass().getResource("DessertCourseScreen.fxml"));
-//            // add loader to root
-//            Parent root = loader.load();
-//            //get the controller of the loader just created
-//            DessertCourseController ctrl = loader.getController();
-//            //call method which receives data in new controller and pass it the value required.
-//            passInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals());
-//            ctrl.dataReceiver(obSelection);
-//
-//            mainWindow.getScene().setRoot(root);
-//        }
-
         Window mainWindow = lblTotal.getScene().getWindow();
 
         // create an instance eof the Loader which is used to open the next screen.
@@ -66,16 +48,13 @@ public class MainCourseController extends Main {
         screen2Controller.dataReceiver(getObList());
         screen2Controller.passInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals());
 
+        setTitle("Select Dessert");
         mainWindow.getScene().setRoot(root);
+
     }
 
 
 
-
-
-    public void setTblNo(String message){
-        lblTblNo.setText(message);
-    }
 
     void setTotal(Double total){
         Locale locale = new Locale("en", "GB");

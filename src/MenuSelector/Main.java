@@ -287,6 +287,11 @@ public class Main extends Application {
 
     }
 
+    public void setTitle(String name){
+        Stage stage = (Stage) lblTotal.getScene().getWindow();
+        stage.setTitle(name);
+    }
+
 
 
 

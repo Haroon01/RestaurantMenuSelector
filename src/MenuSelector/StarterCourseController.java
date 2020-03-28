@@ -65,6 +65,7 @@ public class StarterCourseController extends Main{
 
         Window mainWindow = lblTotal.getScene().getWindow();
 
+
         // create an instance eof the Loader which is used to open the next screen.
         FXMLLoader loader = new FXMLLoader();
         //set the location
@@ -77,41 +78,10 @@ public class StarterCourseController extends Main{
         screen2Controller.dataReceiver(getObList());
         screen2Controller.passInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals());
 
+        setTitle("Select Mains");
+
         mainWindow.getScene().setRoot(root);
     }
-
-
-//        // Parent root = FXMLLoader.load(getClass().getResource("MainCourseScreen.fxml"));
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainCourseScreen.fxml"));
-//        Parent root = loader.load();
-//        MainCourseController m2 = loader.getController();
-//        m2.passInfo(lblTblNo.getText(),getTotalPrice(), getFoodCount(), getTotalCals(), getObList());
-//        //m2.setTblNo(txtTableID.getText());
-//        Stage window = (Stage) lblTotal.getScene().getWindow();
-//        window.setTitle("Choose Main Course");
-//        window.setScene(new Scene(root, 600, 400));
-//        System.out.println(totalCals);
-//        //updateTotals(totalCals);
-//        window.show();
-
-
-
-
-
-
-
-
-
-//    void setTblNo(String message){
-//        lblTblNo.setText(message);
-//    }
-
-//    void setTotal(Double total){
-//        Locale locale = new Locale("en", "GB");
-//        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
-//        totalPrice =+ total;
-//        lblTotal.setText("Total: "+ cf.format(total));
-//    }
 
 
 
