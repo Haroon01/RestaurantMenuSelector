@@ -9,18 +9,13 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.Locale;
 
 public class CheckoutController extends Main {
 
     public void initialize() {
-
         initCols();
-        //obInitCheckout();
-
         setTotal(getTotalPrice());
-
     }
 
     void setTotal(Double total){
@@ -29,6 +24,7 @@ public class CheckoutController extends Main {
         totalPrice =+ total;
         lblTotal.setText("Total prioe to pay: "+ cf.format(total));
     }
+
     public void dataReceiverFinal(ObservableList<Food> list){
         System.out.println("data received");
         //this.obSelection = list;
