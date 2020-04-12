@@ -13,13 +13,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 import java.text.NumberFormat;
 import java.util.*;
 
+//TODO: implement a universal switch scene method which all classes can use
+
 public class Main extends Application {
-
-
     @FXML
     public TextField txtCustomers;
     @FXML
@@ -50,8 +49,6 @@ public class Main extends Application {
     public Label lblCals;
     @FXML
     public Label lblTblNo;
-    @FXML
-    public ArrayList<Food> finalStarters = new ArrayList<>();
     @FXML
     public Button btnCheckout;
 
@@ -86,6 +83,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        // This shows the initial welcome screen
         Parent root = FXMLLoader.load(getClass().getResource("InitialScreen.fxml"));
         primaryStage.setTitle("Restaurant Menu");
         primaryStage.setScene(new Scene(root, 450, 275));
@@ -96,19 +94,13 @@ public class Main extends Application {
 
 
     public void initialize(){
-
-
-
-
     }
 
 
 
 
-    // Observable list where all the food is stored to be displayed in the tableView
     void obInitStarters(){
-        Locale locale = new Locale("en", "GB");
-        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
+        // initialises the list of food with all the starters
         foodList.add(new Food("Kebab", 43, 4.99));
         foodList.add(new Food("Chicken",65,8.49));
         foodList.add(new Food("Fish", 31, 7.69));
@@ -123,8 +115,7 @@ public class Main extends Application {
     }
 
     void obInitMains(){
-        Locale locale = new Locale("en", "GB");
-        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
+        // initialises food list with all the mains
         foodList.add(new Food("Soup", 60, 5.99));
         foodList.add(new Food("Lasanga", 137, 7.95));
         foodList.add(new Food("Rice n Chicken", 283, 6.45));
@@ -138,8 +129,7 @@ public class Main extends Application {
     }
 
     void obInitDessert(){
-        Locale locale = new Locale("en", "GB");
-        NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
+        // initialises list with all the desserts
         foodList.add(new Food("Cheesecake", 435, 6.15));
         foodList.add(new Food("Cake & Custard", 263, 3.56));
         foodList.add(new Food("Vanilla Ice cream", 837, 4.86));
@@ -147,30 +137,24 @@ public class Main extends Application {
         foodList.add(new Food("Waffle", 473, 10.49));
         foodList.add(new Food("Cookie Dough", 205, 6.25));
         foodList.add(new Food("Crêpes", 486, 7.39));
-
         tblFoodCart.setItems(foodList);
     }
 
     void obInitCheckout(){
-
-        System.out.println("array" + finalFoodList);
-        System.out.println("getitemsasOblist" + getItemsAsOList());
-
+        // initialise the observable list for the checkout screen
+        // adds current selected items for the tableview
         tblFoodCart.setItems(obSelection);
 
     }
 
 
     void obSelectionInit(){
-        System.out.println("initialise method has been executed."); // debugging check to see if this method is being executed
-
         obSelection.addListener(new InvalidationListener() {
                                     @Override
                                     public void invalidated(Observable observable) {
                                     }
                                 }
         );
-
         lstCart.setItems(obSelection);
 
 
@@ -190,6 +174,8 @@ public class Main extends Application {
     public void addToCart (ActionEvent event){
         Locale locale = new Locale("en", "UK");
         NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
+
+        //Error catching
         if (tblFoodCart.getSelectionModel().getSelectedIndex() == -1) {
             Alert error = new Alert(Alert.AlertType.ERROR, "Select an item to add!", ButtonType.OK);
             error.showAndWait();
@@ -201,7 +187,6 @@ public class Main extends Application {
             totalPrice += food.getPrice();
             totalCals += food.getCalories();
             updateLabels();
-            //System.out.println(finalFoodList);
             System.out.println(obSelection);
         }
     }
@@ -247,6 +232,7 @@ public class Main extends Application {
     }
 
     void finalPassInfo(String tblMsg, Double total, int count, int calories){
+        //passes info to checkout screen
         Locale locale = new Locale("en", "GB");
         NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
         lblTblNo.setText(tblMsg);
@@ -258,6 +244,7 @@ public class Main extends Application {
         lblCals.setText("Total Calories: " + calories);
     }
     void finalPassInfo2(String tblMsg, Double total, int count, int calories){
+        //passes info to final order completed screen
         Locale locale = new Locale("en", "GB");
         NumberFormat cf = NumberFormat.getCurrencyInstance(locale);
         lblTblNo.setText(tblMsg);
@@ -271,27 +258,8 @@ public class Main extends Application {
 
 
 
-//    public void nextScene(ActionEvent event, Button btn, String fxml, Cast controller, ) throws IOException {
-//
-//        Window mainWindow = btn.getScene().getWindow();
-//
-//        // create an instance eof the Loader which is used to open the next screen.
-//        FXMLLoader loader = new FXMLLoader();
-//        //set the location
-//        loader.setLocation(getClass().getResource(fxml));
-//        // add loader to root
-//        Parent root = loader.load();
-//        //get the controller of the loader just created
-//        controller ctrl = loader.getController();
-//        //call method which receives data in new controller and pass it the value required.
-//        screen2Controller.dataReceiver(obSelection);
-//
-//        mainWindow.getScene().setRoot(root);
-//    } TODO: cant ask for a class as a parameter
-
-    //this can accept anything, could be an arraylist, or even an instance of another class.
     public void dataReceiver(ObservableList<Food> list){
-        //this.message = passedMessage;
+        //used to pass info between scenes
         obSelection.addAll(list);
 
     }

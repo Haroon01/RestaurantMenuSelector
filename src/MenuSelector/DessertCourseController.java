@@ -3,10 +3,7 @@ package MenuSelector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.stage.Window;
-
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -19,7 +16,6 @@ public class DessertCourseController extends Main {
         obInitDessert();
         obSelectionInit();
         setTotal(getTotalPrice());
-        //updateTotals(totalCals);
     }
 
     public void nextScene(ActionEvent event) throws IOException {
@@ -46,11 +42,6 @@ public class DessertCourseController extends Main {
     }
 
 
-
-
-    public void setTblNo(String message){
-        lblTblNo.setText(message);
-    }
 
     void setTotal(Double total){
         Locale locale = new Locale("en", "GB");

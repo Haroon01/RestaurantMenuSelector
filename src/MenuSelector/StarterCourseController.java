@@ -13,45 +13,23 @@ package MenuSelector;
  *
  */
 
-import MenuSelector.Food;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
+
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-
-//import java.awt.event.ActionEvent;
 import javafx.event.ActionEvent;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import javafx.stage.Window;
-
 import java.io.IOException;
-import java.net.URL;
-import java.text.NumberFormat;
-import java.util.Locale;
-import java.util.ResourceBundle;
+
 
 
 public class StarterCourseController extends Main{
 
-
-
-
     @Override
     public void initialize() {
         // Add all items from Observable list to the tableView
-
         initCols();
         obInitStarters();
         obSelectionInit();
-
-
 
 
     }

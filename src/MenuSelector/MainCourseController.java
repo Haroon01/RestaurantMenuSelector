@@ -1,25 +1,14 @@
 package MenuSelector;
 
-import MenuSelector.Food;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import javafx.stage.Window;
-
 import java.io.IOException;
-import java.net.URL;
 import java.text.NumberFormat;
 import java.util.Locale;
-import java.util.ResourceBundle;
+
 
 public class MainCourseController extends Main {
 
@@ -29,7 +18,7 @@ public class MainCourseController extends Main {
         obInitMains();
         obSelectionInit();
         setTotal(getTotalPrice());
-        //updateTotals(totalCals);
+
     }
 
     public void nextScene(ActionEvent event) throws IOException {

@@ -33,22 +33,6 @@ public class CheckoutController extends Main {
 
     }
 
-    public void payWithCash(ActionEvent e) throws IOException {
-        Window mainWindow = lblTotal.getScene().getWindow();
-        // create an instance eof the Loader which is used to open the next screen.
-        FXMLLoader loader = new FXMLLoader();
-        //set the location
-        loader.setLocation(getClass().getResource("PayCashScreen.fxml"));
-        // add loader to root
-        Parent root = loader.load();
-        //get the controller of the loader just created
-        PayCashController screen2Controller = loader.getController();
-        //call method which receives data in new controller and pass it the value required.
-
-
-        mainWindow.getScene().setRoot(root);
-    }
-
 
     public void nextScene(ActionEvent event) throws IOException {
 
@@ -78,7 +62,6 @@ public class CheckoutController extends Main {
     }
 
     public void dataReceiverChck(String newDetails){
-        //this.message = passedMessage;
         lblTotal.setText(newDetails);
 
     }

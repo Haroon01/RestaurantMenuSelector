@@ -17,8 +17,6 @@ public class PaidController extends Main {
     }
 
     public void dataReceiverFinal(ObservableList<Food> list) {
-        System.out.println("data received");
-        //this.obSelection = list;
         tblFoodCart.setItems(list);
 
     }
@@ -41,7 +39,6 @@ public class PaidController extends Main {
         mainWindow.setWidth(470);
 
         mainWindow.getScene().setRoot(root);
-
 
 
     }
