@@ -25,7 +25,7 @@ public class MainCourseController extends Main {
 
         Window mainWindow = lblTotal.getScene().getWindow();
 
-        // create an instance eof the Loader which is used to open the next screen.
+        // create an instance of the Loader which is used to open the next screen.
         FXMLLoader loader = new FXMLLoader();
         //set the location
         loader.setLocation(getClass().getResource("DessertCourseScreen.fxml"));
